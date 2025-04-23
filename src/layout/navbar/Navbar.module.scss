@@ -1,0 +1,180 @@
+@use "@/styles/globals.scss" as *;
+
+.header {
+  width: 100%;
+  background-color: var(--dark);
+  color: var(--quaternary);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  ul {
+    list-style: none;
+  }
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+
+  @include mobile {
+    padding: 1rem;
+  }
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+}
+.searchToggleMobile {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: var(--quaternary);
+  cursor: pointer;
+  padding: 0.5rem 0;
+
+  &:hover {
+    color: var(--tertiary);
+  }
+
+  span {
+    font-size: 1rem;
+  }
+}
+
+.desktopNav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  @include mobile {
+    display: none;
+  }
+
+  .navLink {
+    font-weight: 500;
+    color: var(--quaternary);
+    transition: color 0.2s ease;
+
+    &:hover,
+    &.active {
+      color: var(--tertiary);
+    }
+  }
+
+  .searchToggle {
+    background: none;
+    border: none;
+    color: var(--quaternary);
+    cursor: pointer;
+    font-size: 1.25rem;
+
+    &:hover {
+      color: var(--tertiary);
+    }
+  }
+}
+
+.menuToggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--quaternary);
+  cursor: pointer;
+
+  @include mobile {
+    display: block;
+  }
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+}
+
+.mobileNav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 70%;
+  height: 100vh;
+  background-color: var(--dark);
+  padding: 2rem 1.5rem;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  .navLink {
+    font-size: 1.2rem;
+    color: var(--quaternary);
+    font-weight: 500;
+
+    &:hover,
+    &.active {
+      color: var(--tertiary);
+    }
+  }
+}
+
+.searchBar {
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--primary-dark);
+  padding: 1rem 2rem;
+
+  @include mobile {
+    padding: 1rem;
+  }
+}
+
+.searchForm {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  .searchInput {
+    flex: 1;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: 2px solid var(--secondary);
+    background-color: var(--dark);
+    color: var(--quaternary);
+    border-radius: 6px;
+
+    &:focus {
+      outline: none;
+      border-color: var(--tertiary);
+    }
+  }
+
+  .searchButton {
+    background-color: var(--secondary);
+    color: var(--quaternary);
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--tertiary);
+      color: var(--dark);
+    }
+  }
+}
