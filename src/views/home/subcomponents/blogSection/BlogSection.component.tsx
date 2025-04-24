@@ -23,7 +23,7 @@ const BlogSection = ({ blogs, recentBlogs }: Props) => {
       className={styles.articleContainer}
     >
       <div className={styles.leftContainer}>
-        <h1 className={`section-title`}>Featured Blogs</h1>
+        <h1 className={`section-title`}>Featured Blog</h1>
         <div className={styles.featuredContainer}>
           <div className={styles.featuredBlog}>
             {
