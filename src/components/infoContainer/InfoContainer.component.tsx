@@ -1,3 +1,4 @@
+"use client";
 import styles from "./InfoContainer.module.scss";
 import formStyles from "@/styles/Form.module.scss";
 import React, { useState } from "react";
@@ -10,14 +11,23 @@ import socialLinks from "@/data/socialLinks";
 
 interface InfoContainerProps {
   blogs?: BlogType[];
-  loading?: boolean;
-  isError?: boolean;
-  error?: any;
 }
 
-const InfoContainer = ({ blogs, loading, isError, error }: InfoContainerProps) => {
+const InfoContainer = ({ blogs }: InfoContainerProps) => {
   const [showSubscribe, setShowSubscribe] = useState(false);
   const [email, setEmail] = useState("");
+  const {
+    data: blogsData,
+    isLoading: loading,
+    isError,
+    error,
+  } = useApiHook({
+    method: "GET",
+    url: `/blog`,
+    key: "recentBlogs",
+    filter: `isPublished;true,isPrivate;false`,
+    enabled: !blogs,
+  }) as any;
 
   const onSuccessCallback = (data: any) => {
     if (data.success) {
@@ -123,7 +133,7 @@ const InfoContainer = ({ blogs, loading, isError, error }: InfoContainerProps) =
         ) : blogs?.length === 0 ? (
           <p>No blogs found.</p>
         ) : (
-          blogs?.map((blog) => (
+          (blogs ?? blogsData?.blogs)?.map((blog: BlogType) => (
             <motion.div key={blog._id} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
               <BlogCard blog={blog} large={false} showDescription={true} />
             </motion.div>

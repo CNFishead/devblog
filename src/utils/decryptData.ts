@@ -1,4 +1,4 @@
-import CryptoJS, { AES } from 'crypto-js';
+import CryptoJS, { AES } from "crypto-js";
 
 /**
  * @description uses crypto-js to decrypt sensitive data, such as passwords
@@ -17,8 +17,24 @@ import CryptoJS, { AES } from 'crypto-js';
  * @see https://www.npmjs.com/package/crypto-js#usage
  * @todo write tests
  */
-export default (data: string): string => {
-  return AES.decrypt(data, process.env.ENCRYPTION_KEY!).toString(
-    CryptoJS.enc.Utf8
-  );
-};
+export default function decryptData(data: string): string {
+  const key = process.env.ENCRYPTION_KEY;
+  if (!key) {
+    console.error("Missing ENCRYPTION_KEY environment variable");
+    return "";
+  }
+
+  try {
+    const bytes = AES.decrypt(data, key);
+    const decrypted = bytes.toString(CryptoJS.enc.Utf8);
+
+    if (!decrypted) {
+      console.warn("Decryption returned an empty string – likely invalid key or corrupted data");
+    }
+
+    return decrypted;
+  } catch (err) {
+    console.error("Failed to decrypt data:", err);
+    return "";
+  }
+}

@@ -69,12 +69,13 @@ a {
   text-decoration: none;
 }
 .section-title {
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
   text-decoration-line: underline;
   text-decoration-color: var(--tertiary);
   text-decoration-style: wavy;
   text-decoration-thickness: 2px;
-  text-underline-offset: 0.5em;
+  text-underline-offset: 0.5rem;
+  line-height: 3rem;
 } 
 
 ::-webkit-scrollbar {

@@ -13,7 +13,6 @@ interface Props {
 const Home = ({ blogs, recentBlogs }: Props) => {
   return (
     <div className={styles.container}>
-      <ConnectedDots />
       <HeroSection />
       <BlogSection blogs={blogs} recentBlogs={recentBlogs} />
     </div>

@@ -15,8 +15,7 @@ interface BlogCardProps {
 const BlogCard = ({ blog, large, showDescription }: BlogCardProps) => {
   const [expanded, setExpanded] = useState(false);
 
-  const truncate = (text: string, limit = 150) =>
-    text.length > limit ? `${text.substring(0, limit)}...` : text;
+  const truncate = (text: string, limit = 150) => (text.length > limit ? `${text.substring(0, limit)}...` : text);
 
   const handleToggle = () => setExpanded((prev) => !prev);
 
@@ -30,7 +29,9 @@ const BlogCard = ({ blog, large, showDescription }: BlogCardProps) => {
           <div className={styles.cardBody}>
             <h2 className={styles.cardTitle}>{blog?.blogTitle}</h2>
             <div className={styles.meta}>
-              <span>{dayjs(blog?.publishedAt).format("MMM DD, YYYY")} by {blog?.author}</span>
+              <span>
+                {dayjs(blog?.publishedAt).format("MMM DD, YYYY")} by {blog?.author}
+              </span>
             </div>
             <p className={styles.description}>
               {expanded ? blog.description : truncate(blog.description)}
@@ -59,13 +60,13 @@ const BlogCard = ({ blog, large, showDescription }: BlogCardProps) => {
           <div className={styles.articleContent}>
             <div className={styles.titleContainer}>
               <h3 className={styles.ellipsis}>{blog?.blogTitle}</h3>
-              <span className={styles.date}>{dayjs(blog?.createdAt).format("MMM DD, YYYY")} by {blog?.author}</span>
+              <span className={styles.date}>
+                {dayjs(blog?.createdAt).format("MMM DD, YYYY")} by {blog?.author}
+              </span>
             </div>
             {showDescription && (
               <div className={styles.contentContainer}>
-                <p className={styles.description}>
-                  {expanded ? blog.description : truncate(blog.description)}
-                </p>
+                <p className={styles.description}>{expanded ? blog.description : truncate(blog.description)}</p>
                 {blog.description.length > 150 && (
                   <button className={styles.toggleBtn} onClick={handleToggle}>
                     {expanded ? "See Less" : "See More"}
