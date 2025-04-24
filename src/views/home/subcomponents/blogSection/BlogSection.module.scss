@@ -57,8 +57,6 @@
     flex-direction: column; 
     top: 2rem;
     align-items: flex-start;
-    max-height: calc(100svh - 2rem); // ensures a fit in the viewport
-    overflow-y: auto;
     -webkit-overflow-scrolling: touch; // Smooth scrolling on iOS
 
     // @include mobile {

@@ -28,24 +28,18 @@
     }
   }
   .input {
-    margin-bottom: 20px;
-    border-radius: 10px;
-    margin: 0;
-    background-color: rgb(255, 255, 255);
-    padding: 10px;
-    font-size: 15px;
+    margin-bottom: 20px; 
+    margin: 0; 
     font-weight: 400;
     color: $color-dark;
     width: 100%;
-    // border: none;
-    input {
-      background-color: white;
-    }
-
-    &:focus {
-      outline: none;
-      background-color: var(--quaternary-light);
-    }
+    padding: 0.75rem;
+    border: 1px solid var(--quaternary-dark);
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: var(--dark);
+    color: white; 
+ 
     &:disabled {
       background-color: var(--quaternary-dark);
     }
@@ -76,16 +70,7 @@
     display: flex;
     flex-direction: column;
   }
-
-  .input {
-    padding: 0.75rem;
-    border: 1px solid var(--quaternary-dark);
-    border-radius: 6px;
-    font-size: 1rem;
-    background-color: var(--dark);
-    color: var(--dark);
-  }
-
+ 
   .button {
     padding: 0.75rem 1.5rem;
     background-color: var(--primary);

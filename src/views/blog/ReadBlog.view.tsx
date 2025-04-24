@@ -11,6 +11,9 @@ import InfoContainer from "@/components/infoContainer/InfoContainer.component";
 import { FaCalendarAlt, FaComment, FaCommentAlt, FaEye, FaTags, FaTimes, FaUser } from "react-icons/fa";
 import VideoPlayer from "@/components/videoPlayer/VideoPlayer.component";
 import useApiHook from "@/state/useApi";
+import { useAddView } from "@/state/views";
+import CommentForm from "@/components/comments/commentForm/CommentForm.component";
+import Comment from "@/components/comments/comment/Comment.component";
 
 interface ReadBlogProps {
   blog: BlogType;
@@ -24,14 +27,19 @@ const ReadBlog = ({ blog }: ReadBlogProps) => {
     isError: commentsError,
   } = useApiHook({
     method: "GET",
-    url: `/comment/${blog._id}`,
+    url: `/blog/${blog._id}/comment`,
     filter: "isFlagged;false",
     key: ["comments", blog._id],
     enabled: !!blog,
   }) as any;
 
+  const { mutate: updateBlogViewCount } = useAddView();
   useEffect(() => {
-    // optional: update views here
+    const viewedKey = `viewed-${blog._id}`;
+    if (blog && !localStorage.getItem(viewedKey)) {
+      updateBlogViewCount(blog._id);
+      localStorage.setItem(viewedKey, "true");
+    }
   }, [blog]);
 
   return (
@@ -94,10 +102,9 @@ const ReadBlog = ({ blog }: ReadBlogProps) => {
               <h2 className="section-title">Comments</h2>
               <FaTimes className={styles.closeButton} onClick={() => setShowComments(false)} />
             </div>
-            {/* <CommentForm blog={blog} /> */}
+            <CommentForm blog={blog} />
             {commentData?.comments?.map((c: any) => (
-              <></>
-              // <CommentItem key={c._id} comment={c} />
+              <Comment key={c._id} comment={c} />
             ))}
           </div>
         ) : (

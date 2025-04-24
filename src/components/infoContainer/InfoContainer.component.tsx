@@ -26,6 +26,7 @@ const InfoContainer = ({ blogs }: InfoContainerProps) => {
     url: `/blog`,
     key: "recentBlogs",
     filter: `isPublished;true,isPrivate;false`,
+    limit: 3,
     enabled: !blogs,
   }) as any;
 
@@ -49,7 +50,7 @@ const InfoContainer = ({ blogs }: InfoContainerProps) => {
   };
 
   return (
-    <>
+    <div className={styles.container}>
       <div className={styles.socialCard}>
         <div className={styles.logoContainer}>
           <img src="/images/logo-192x192.png" alt="logo" width={100} height={100} />
@@ -140,7 +141,7 @@ const InfoContainer = ({ blogs }: InfoContainerProps) => {
           ))
         )}
       </div>
-    </>
+    </div>
   );
 };
 

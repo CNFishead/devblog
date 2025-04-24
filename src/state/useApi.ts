@@ -4,7 +4,7 @@ import axios from "@/utils/axios";
 import { useRouter } from "next/navigation";
 import decryptData from "@/utils/decryptData";
 import { useSearchStore as store } from "@/state/search";
-import { useInterfaceStore } from "@/state/interface"; 
+import { useInterfaceStore } from "@/state/interface";
 import { v4 as uuidv4 } from "uuid";
 
 const fetchData = async (url: string, method: "GET" | "POST" | "PUT" | "DELETE", data?: any, options?: any) => {
@@ -26,7 +26,7 @@ const fetchData = async (url: string, method: "GET" | "POST" | "PUT" | "DELETE",
         params: {
           keyword: defaultKeyword,
           pageNumber: defaultPageNumber,
-          pageLimit: defaultPageLimit,
+          limit: defaultPageLimit,
           filterOptions: defaultFilter,
           sortOptions: defaultSort,
           includeOptions: defaultInclude,
@@ -60,6 +60,7 @@ const useApiHook = (options: {
   keyword?: string;
   sort?: any;
   include?: any;
+  limit?: number;
   queriesToInvalidate?: string[];
   successMessage?: string;
   redirectUrl?: string;
@@ -79,6 +80,7 @@ const useApiHook = (options: {
     url,
     key,
     filter,
+    limit,
     sort,
     include,
     queriesToInvalidate,
@@ -103,6 +105,7 @@ const useApiHook = (options: {
         defaultFilter: filter,
         defaultSort: sort,
         defaultInclude: include,
+        defaultPageLimit: limit,
       }),
     enabled: enabled && method === "GET",
     refetchOnWindowFocus,

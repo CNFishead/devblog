@@ -7,7 +7,8 @@
   gap: 4rem;
   padding: 4rem 0;
   max-width: 1280px;
-  margin: 0 auto;
+  margin: 0 auto; 
+  align-items: stretch;
   @include tablet {
     flex-direction: column;
     gap: 2rem;
@@ -24,8 +25,7 @@
 
 .rightContainer {
   flex: 1;
-  position: relative;
-  width: 100%;
+  position: static;
 }
 
 .coverImageContainer {
@@ -48,7 +48,7 @@
 .metaContainer {
   display: flex;
   flex-direction: column;
-  justify-content: space-between; 
+  justify-content: space-between;
   font-size: 0.95rem;
   color: var(--quaternary);
   background-color: rgba($color: var(--primary-rgb), $alpha: 0.8);

@@ -1,5 +1,11 @@
 @use "@/styles/globals.scss" as *;
 
+.container {
+  display: flex;
+  flex-direction: column;
+  position: static; 
+  overflow-y: scroll;
+}
 .socialCard {
   @extend .cardContainer;
   background-image: url("/images/map.svg");
@@ -40,7 +46,7 @@
   margin-bottom: 2rem;
   text-align: center;
 
-  h1 { 
+  h1 {
   }
 
   span {
@@ -75,7 +81,4 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  max-height: 600px;
-  overflow: hidden;
-  overflow-y: scroll;
 }
