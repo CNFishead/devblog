@@ -39,7 +39,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: rgb(27, 27, 27);
     --foreground: #ededed;
   }
 }
@@ -68,6 +68,15 @@ a {
   color: inherit;
   text-decoration: none;
 }
+.section-title {
+  margin-bottom: 3rem;
+  text-decoration-line: underline;
+  text-decoration-color: var(--tertiary);
+  text-decoration-style: wavy;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.5em;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;

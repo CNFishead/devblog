@@ -1,0 +1,82 @@
+@use "@/styles/globals.scss" as *;
+.articleContainer {
+  display: flex;
+  gap: 50px;
+  width: 90%;
+  margin: 5% auto;
+  position: relative;
+  max-width: 1200px;
+
+  @include tablet {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .leftContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 75%;
+
+    @include tablet {
+      // width: 65%;
+    }
+    .featuredContainer {
+      @extend .cardContainer;
+      display: grid !important;
+      grid-template-columns: repeat(2, 1fr);
+
+      .featuredBlog {
+        width: 100%;
+      }
+      @include mobile {
+        display: flex !important;
+        flex-direction: column;
+      }
+    }
+    .mostRecentContainer {
+      @extend .cardContainer;
+
+      .titleContainer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+  }
+  .rightContainer {
+    position: sticky;
+    display: flex;
+    flex-direction: column;
+    gap: 5%;
+    width: 75%;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+
+    // @include mobile {
+    //   width: 100%;
+    //   position: relative;
+    //   height: auto;
+    // }
+
+    @include tablet {
+      position: relative;
+      height: auto;
+      width: auto;
+      gap: 10px;
+    }
+  }
+}
+.articlesContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 400px;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.emphasis {
+  font-weight: 600;
+  color: var(--secondary);
+}

@@ -1,0 +1,9 @@
+.icon {
+  font-size: 2em;
+  border-radius: 50%;
+  color: var(--secondary);
+
+  &:hover {
+    color: var(--secondary-light);
+  }
+}
