@@ -1,5 +1,5 @@
 import BlogType from "@/types/BlogType";
-import React from "react";
+import React, { useState } from "react";
 import styles from "./BlogCard.module.scss";
 import Link from "next/link";
 import dayjs from "dayjs";
@@ -13,6 +13,13 @@ interface BlogCardProps {
 }
 
 const BlogCard = ({ blog, large, showDescription }: BlogCardProps) => {
+  const [expanded, setExpanded] = useState(false);
+
+  const truncate = (text: string, limit = 150) =>
+    text.length > limit ? `${text.substring(0, limit)}...` : text;
+
+  const handleToggle = () => setExpanded((prev) => !prev);
+
   return (
     <div className={styles.container}>
       {large ? (
@@ -21,59 +28,57 @@ const BlogCard = ({ blog, large, showDescription }: BlogCardProps) => {
             <Image alt={blog.blogTitle} src={blog?.blogImageUrl} layout="fill" />
           </div>
           <div className={styles.cardBody}>
-            <div className={styles.cardTitle}>
-              <h2>{blog?.blogTitle}</h2>
+            <h2 className={styles.cardTitle}>{blog?.blogTitle}</h2>
+            <div className={styles.meta}>
+              <span>{dayjs(blog?.publishedAt).format("MMM DD, YYYY")} by {blog?.author}</span>
             </div>
-            <div className={styles.description}>
-              <div className={styles.meta}>
-                <span className={styles.author}>{dayjs(blog?.publishedAt).format("MMM DD, YYYY")} by </span>
-                <span className={styles.date}>{blog?.author}</span>
-              </div>
-              <p>
-                {
-                  // if the description is too long, truncate it, show a read more button
-                  // and show the full description, if the see more button is clicked
-                  blog?.description?.length > 200 ? `${blog?.description.substring(0, 150)}...` : blog.description
-                }
-              </p>
-            </div>
-            <div className={styles.actionContainer}>
-              <Link href={`/blog/${blog.slug}`}>
-                <button className={`transitionButton`} aria-label={`Read More: ${blog.blogTitle}`}>
-                  Read More
+            <p className={styles.description}>
+              {expanded ? blog.description : truncate(blog.description)}
+              {blog.description.length > 150 && (
+                <button className={styles.toggleBtn} onClick={handleToggle}>
+                  {expanded ? "See Less" : "See More"}
                 </button>
-              </Link>
-            </div>
+              )}
+            </p>
+            <Link href={`/blog/${blog.slug}`} className={styles.readMore}>
+              Read More
+            </Link>
           </div>
         </div>
       ) : (
-        <div className={styles.article} key={blog._id}>
+        <div className={styles.article}>
           <div className={styles.articleImage}>
-            <Image alt={blog?.blogTitle} src={blog?.blogImageUrl} className={styles.image} layout="fill"  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"/>
+            <Image
+              alt={blog?.blogTitle}
+              src={blog?.blogImageUrl}
+              layout="fill"
+              className={styles.image}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
           </div>
-          {/* just displaying the title and the date it was published */}
           <div className={styles.articleContent}>
             <div className={styles.titleContainer}>
-              <h3 className="ellipsis">{blog?.blogTitle}</h3>
-              <span className={styles.date}>{new Date(blog?.createdAt).toDateString()}</span>
+              <h3 className={styles.ellipsis}>{blog?.blogTitle}</h3>
+              <span className={styles.date}>{dayjs(blog?.createdAt).format("MMM DD, YYYY")} by {blog?.author}</span>
             </div>
-            <div className={styles.contentContainer}>
-              {showDescription && (
+            {showDescription && (
+              <div className={styles.contentContainer}>
                 <p className={styles.description}>
-                  {
-                    // if the description is too long, truncate it, show a read more button
-                    // and show the full description, if the see more button is clicked
-                    blog?.description?.length > 200 ? `${blog?.description.substring(0, 150)}...` : blog.description
-                  }
+                  {expanded ? blog.description : truncate(blog.description)}
                 </p>
-              )}
-              <div className={styles.actionContainer}>
-                <Link href={`/blog/${blog?.slug}`}>
-                  <button className={`transitionButton`} aria-label={`Read Blog ${blog.blogTitle}`}>
-                    <MdOutlineOpenInNew />
+                {blog.description.length > 150 && (
+                  <button className={styles.toggleBtn} onClick={handleToggle}>
+                    {expanded ? "See Less" : "See More"}
                   </button>
-                </Link>
+                )}
               </div>
+            )}
+            <div className={styles.actionContainer}>
+              <Link href={`/blog/${blog?.slug}`}>
+                <button className={styles.readIconButton} aria-label={`Read Blog ${blog.blogTitle}`}>
+                  <MdOutlineOpenInNew />
+                </button>
+              </Link>
             </div>
           </div>
         </div>

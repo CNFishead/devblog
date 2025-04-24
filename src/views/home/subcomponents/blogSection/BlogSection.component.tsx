@@ -39,19 +39,12 @@ const BlogSection = ({ blogs, recentBlogs }: Props) => {
               )
             }
           </div>
-          <div className={styles.articlesContainer}>
-            {blogs?.map((blog, index) => {
-              if (index > 0) {
-                return <BlogCard blog={blog} key={blog._id} large={false} />;
-              }
-            })}
-          </div>
         </div>
         <div className={styles.mostRecentContainer}>
           <div className={styles.titleContainer}>
             <h1 className={`section-title`}>Most Recent Blogs</h1>
             <Link href="/blog">
-              <button aria-label="See more blogs" className="transitionButton">
+              <button aria-label="See more blogs" className={styles.transitionButton}>
                 See More
               </button>
             </Link>

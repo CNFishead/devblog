@@ -1,81 +1,153 @@
-@import "@/styles/globals.scss";
+@use "@/styles/globals.scss" as *;
 
 .container {
-  height: 100%;
   width: 100%;
-  .featuredCard {
-    padding: 2%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    background-color: transparent;
-    height: 100%;
+}
 
-    @include mobile {
-      padding: 0;
-    }
-    .cardBody {
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      .description {
-        flex: 1;
-      }
-    }
-    .imageContainer {
-      position: relative;
-      min-height: 200px;
-      img {
-        width: 100%;
-      }
+.featuredCard {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--primary-dark);
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  margin-bottom: 2rem;
+
+  .imageContainer {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+
+    img {
+      object-fit: cover;
     }
   }
 
-  .article {
-    @extend .cardContainer;
-    flex-direction: row !important;
-    border: 0;
-    border-bottom: 1px solid var(--quaternary-light) !important;
-    border-radius: 5px !important;
-    gap: 10px;
-    width: 100%;
-    .articleImage {
-      position: relative;
-      width: 25%;
-      max-width: 150px;
-      max-height: 150px;
-      .image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 5px;
+  .cardBody {
+    padding: 1.5rem;
+
+    .cardTitle {
+      font-size: 1.75rem;
+      color: var(--quaternary);
+      margin-bottom: 0.5rem;
+    }
+
+    .meta {
+      font-size: 0.9rem;
+      color: var(--tertiary-dark);
+      margin-bottom: 1rem;
+    }
+
+    .description {
+      color: var(--quaternary-dark);
+      margin-bottom: 1rem;
+    }
+
+    .toggleBtn {
+      background: none;
+      border: none;
+      color: var(--tertiary);
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .readMore {
+      display: inline-block;
+      padding: 0.6rem 1.25rem;
+      background-color: var(--tertiary);
+      color: var(--dark);
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: var(--tertiary-light);
       }
     }
-    h3 {
-      margin: 0;
+  }
+}
+
+.article {
+  display: flex;
+  gap: 1.5rem;
+  background-color: var(--primary-dark);
+  border-radius: 1rem;
+  overflow: hidden;
+  padding: 1rem;
+
+  @include mobile {
+    flex-direction: column;
+  }
+
+  .articleImage {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    flex-shrink: 0;
+
+    img {
+      object-fit: cover;
+      border-radius: 0.5rem;
     }
-    .articleContent {
-      width: 75%;
+  }
+
+  .articleContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+
+    .titleContainer {
       display: flex;
       flex-direction: column;
-      .titleContainer {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
+
+      h3 {
+        font-size: 1.25rem;
+        color: var(--quaternary);
+        margin: 0;
       }
-      .contentContainer {
-        display: flex;
-        justify-content: flex-end;
-        .description {
-          flex: 1;
-        }
-        .actionContainer {
-          width: 20%;
-          button {
-            @extend .transitionButton;
-            width: 100%;
-          }
+
+      .date {
+        font-size: 0.9rem;
+        color: var(--tertiary);
+      }
+    }
+
+    .contentContainer { 
+
+      .description {
+        font-size: 0.95rem;
+        color: var(--quaternary-dark);
+        margin-bottom: 0.5rem;
+      }
+
+      .toggleBtn {
+        background: none;
+        border: none;
+        color: var(--tertiary);
+        cursor: pointer;
+        font-weight: 600;
+      }
+    }
+
+    .actionContainer {
+      display: flex;
+      justify-content: flex-start;
+
+      .readIconButton {
+        background-color: transparent;
+        border: 2px solid var(--tertiary);
+        color: var(--tertiary);
+        padding: 0.4rem 0.6rem;
+        border-radius: 0.5rem;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background-color: var(--tertiary);
+          color: var(--dark);
+          cursor: pointer;
         }
       }
     }

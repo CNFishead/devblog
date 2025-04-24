@@ -1,4 +1,4 @@
-@import "@/styles/globals.scss";
+@use "@/styles/globals.scss" as *;
 
 .socialCard {
   @extend .cardContainer;
@@ -10,8 +10,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  // height: 100%;
-  padding: 5%;
+  border-radius: 1rem;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  gap: 1.5rem;
 
   .linksContainer {
     display: flex;
@@ -19,34 +21,58 @@
     justify-content: space-evenly;
     border-left: 2px solid white;
     border-right: 2px solid white;
+    margin-top: 5%;
+  }
+  .logoContainer {
+    flex-shrink: 0;
+
+    img {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+    }
   }
 }
 .newsLetterCard {
   @extend .cardContainer;
+  border-radius: 1rem;
+  padding: 2rem;
+  margin-bottom: 2rem;
   text-align: center;
-  padding: 5%;
+
+  h1 { 
+  }
+
+  span {
+    display: block;
+    margin-bottom: 1rem;
+    color: var(--quaternary);
+  }
 
   .actionContainer {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 2% 0;
-    gap: 10px;
-    button {
-      width: 50%;
-      background-color: var(--success);
-      color: white;
-      border-color: var(--success);
-      &:hover {
-        background-color: var(--success-dark);
-        border-color: var(--success-dark);
-      }
+  }
+
+  .subscribeButton {
+    background-color: var(--success);
+    color: white;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: var(--success-dark);
     }
   }
 }
 
-.blogsContainer{
+.blogsContainer {
   display: flex;
   flex-direction: column;
+  gap: 10px;
 }

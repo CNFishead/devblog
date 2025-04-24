@@ -1,11 +1,12 @@
 @use "@/styles/globals.scss" as *;
 .articleContainer {
   display: flex;
-  gap: 50px;
-  width: 90%;
-  margin: 5% auto;
+  align-items: flex-start;
+  gap: 1rem;
+  width: 100%;
   position: relative;
-  max-width: 1200px;
+  max-width: 1280px; 
+  margin: 0 auto;
 
   @include tablet {
     flex-direction: column;
@@ -15,7 +16,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    min-width: 75%;
+    flex: 2; 
 
     @include tablet {
       // width: 65%;
@@ -23,10 +24,12 @@
     .featuredContainer {
       @extend .cardContainer;
       display: grid !important;
-      grid-template-columns: repeat(2, 1fr);
-
+      grid-template-columns: repeat(1, 1fr);
+      gap: 20px;
       .featuredBlog {
         width: 100%;
+        max-width: 480px;
+        margin: 0 auto;
       }
       @include mobile {
         display: flex !important;
@@ -46,12 +49,13 @@
   .rightContainer {
     position: sticky;
     display: flex;
-    flex-direction: column;
-    gap: 5%;
-    width: 75%;
-    top: 0;
-    height: 100vh;
+    flex: 1;
+    flex-direction: column; 
+    top: 2rem;
+    align-items: flex-start;
+    max-height: calc(100svh - 2rem); // ensures a fit in the viewport
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch; // Smooth scrolling on iOS
 
     // @include mobile {
     //   width: 100%;
@@ -70,6 +74,7 @@
 .articlesContainer {
   display: flex;
   flex-direction: column;
+  align-items: stretch;
   gap: 10px;
   max-height: 400px;
   overflow: hidden;
