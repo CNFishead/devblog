@@ -8,6 +8,7 @@ import 'video.js/dist/video-js.css';
 
 type Props = {
   video: any;
+  poster: string;
 };
 const VideoPlayer = (props: Props) => {
   const videoRef = useRef(null);
@@ -17,7 +18,7 @@ const VideoPlayer = (props: Props) => {
     controls: true,
     id: 'Video',
     nativeControlsForTouch: false,
-    poster: props.video.imageUrl,
+    poster: props.poster,
     playbackRates: [0.5, 1, 1.5, 2],
 
     controlBar: {

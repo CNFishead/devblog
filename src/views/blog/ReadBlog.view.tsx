@@ -47,7 +47,7 @@ const ReadBlog = ({ blog }: ReadBlogProps) => {
       <div className={styles.leftContainer}>
         <h1 className="section-title">{blog.blogTitle}</h1>
 
-        {blog.blogImageUrl && (
+        {blog.blogImageUrl && !blog.isVlog && (
           <div className={styles.coverImageContainer}>
             <img src={blog.blogImageUrl} alt={blog.blogTitle} />
           </div>
@@ -55,7 +55,7 @@ const ReadBlog = ({ blog }: ReadBlogProps) => {
 
         {blog.isVlog && (
           <div className={styles.videoContainer}>
-            <VideoPlayer video={blog} />
+            <VideoPlayer video={blog} poster={blog.blogImageUrl} />
           </div>
         )}
 
