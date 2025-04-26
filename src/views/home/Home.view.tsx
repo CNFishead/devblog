@@ -2,8 +2,7 @@ import React from "react";
 import styles from "./Home.module.scss";
 import HeroSection from "./subcomponents/heroSection/HeroSection.component";
 import BlogType from "@/types/BlogType";
-import BlogSection from "./subcomponents/blogSection/BlogSection.component";
-import ConnectedDots from "@/components/dots/ConnectedDots.component";
+import BlogSection from "./subcomponents/blogSection/BlogSection.component"; 
 
 interface Props {
   blogs: BlogType[];

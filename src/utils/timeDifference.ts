@@ -1,11 +1,11 @@
-export default (current: any, previous: any) => {
-  var msPerMinute = 60 * 1000;
-  var msPerHour = msPerMinute * 60;
-  var msPerDay = msPerHour * 24;
-  var msPerMonth = msPerDay * 30;
-  var msPerYear = msPerDay * 365;
+export default function timeDifference(current: any, previous: any): string {
+  const msPerMinute = 60 * 1000;
+  const msPerHour = msPerMinute * 60;
+  const msPerDay = msPerHour * 24;
+  const msPerMonth = msPerDay * 30;
+  const msPerYear = msPerDay * 365;
 
-  var elapsed = current - previous;
+  const elapsed = current - previous;
 
   if (elapsed < msPerMinute) {
     if (elapsed / 1000 < 30) return "Just now";
@@ -22,4 +22,4 @@ export default (current: any, previous: any) => {
   } else {
     return Math.round(elapsed / msPerYear) + " years ago";
   }
-};
+}

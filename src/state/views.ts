@@ -1,4 +1,4 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import axios from "@/utils/axios";
 
 // Util: Parse browser type safely
@@ -31,7 +31,7 @@ export const addView = async (id: string) => {
 };
 
 export const useAddView = () => {
-  const queryClient = useQueryClient();
+  // const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: (id: string) => addView(id),

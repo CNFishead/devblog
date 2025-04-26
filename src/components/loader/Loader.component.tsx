@@ -1,4 +1,4 @@
-import { AiOutlineLoading } from 'react-icons/ai';
+// import { AiOutlineLoading } from 'react-icons/ai';
 // import { Spin } from 'antd';
 import styles from './Loader.module.scss';
 

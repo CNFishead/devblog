@@ -1,9 +1,8 @@
 "use client";
 
-import styles from "./Comment.module.scss";
-import { BsFillTrashFill } from "react-icons/bs"; 
-import { useSearchParams } from "next/navigation";
-import useApiHook from "@/state/useApi"; 
+import styles from "./Comment.module.scss"; 
+// import { useSearchParams } from "next/navigation";
+// import useApiHook from "@/state/useApi"; 
 import timeDifference from "@/utils/timeDifference";
 
 type Props = {
@@ -12,13 +11,13 @@ type Props = {
 };
 
 const Comment = ({ comment, large = false }: Props) => {
-  const searchParams = useSearchParams();
-  const blogId = searchParams.get("slug") || ""; // Assuming blog slug is in query
+  // const searchParams = useSearchParams();
+  // const blogId = searchParams.get("slug") || ""; // Assuming blog slug is in query
 
-  const { mutate: deleteComment, isLoading } = useApiHook({
-    method: "DELETE",
-    key: "comment",
-  }) as any;
+  // const { mutate: deleteComment, isLoading } = useApiHook({
+  //   method: "DELETE",
+  //   key: "comment",
+  // }) as any;
   if (!comment) return null;
 
   return (

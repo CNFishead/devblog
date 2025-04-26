@@ -1,4 +1,4 @@
-import CryptoJS, { AES } from 'crypto-js';
+import { AES } from 'crypto-js';
 
 /**
  * @description uses crypto-js to encrypt sensitive data, such as passwords

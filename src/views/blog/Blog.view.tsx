@@ -14,7 +14,7 @@ export default function BlogPaginationContainer({ initialSearch }: Props) {
   const [search, setSearch] = useState(initialSearch);
   const [activeSearch, setActiveSearch] = useState(initialSearch);
 
-  const { data, isLoading, isError, isFetching } = useApiHook({
+  const { data, isLoading, isError } = useApiHook({
     url: `/blog`,
     key: ["blogs", activeSearch, page],
     method: "GET",
@@ -29,8 +29,7 @@ export default function BlogPaginationContainer({ initialSearch }: Props) {
     setPage(1);
     setActiveSearch(search);
   };
-
-  const handleLoadMore = () => setPage((prev) => prev + 1);
+ 
 
   return (
     <div className={styles.blogPaginationContainer}>

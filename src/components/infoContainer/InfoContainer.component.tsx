@@ -9,6 +9,7 @@ import useApiHook from "@/state/useApi";
 import { motion, AnimatePresence } from "framer-motion";
 import socialLinks from "@/data/socialLinks";
 import { useMediaQuery } from "react-responsive";
+import Image from "next/image";
 
 interface InfoContainerProps {
   blogs?: BlogType[];
@@ -33,13 +34,13 @@ const InfoContainer = ({ blogs, showBlogs = false }: InfoContainerProps) => {
     enabled: !blogs,
   }) as any;
 
-  const onSuccessCallback = (data: any) => {
-    if (data.success) {
-      setShowSubscribe(false);
-      alert("You have successfully subscribed to my newsletter.");
-      setEmail("");
-    }
-  };
+  // const onSuccessCallback = (data: any) => {
+  //   if (data.success) {
+  //     setShowSubscribe(false);
+  //     alert("You have successfully subscribed to my newsletter.");
+  //     setEmail("");
+  //   }
+  // };
   const { mutate: newsLetterSignup } = useApiHook({
     method: "POST",
     url: "/util/newsletter",
@@ -56,7 +57,7 @@ const InfoContainer = ({ blogs, showBlogs = false }: InfoContainerProps) => {
     <div className={styles.container}>
       <div className={styles.socialCard}>
         <div className={styles.logoContainer}>
-          <img src="/images/logo-192x192.png" alt="logo" width={100} height={100} />
+          <Image src="/images/logo-192x192.png" alt="logo" width={100} height={100} />
         </div>
         <div className={styles.contentContainer}>
           <p>

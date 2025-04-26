@@ -14,6 +14,7 @@ import useApiHook from "@/state/useApi";
 import { useAddView } from "@/state/views";
 import CommentForm from "@/components/comments/commentForm/CommentForm.component";
 import Comment from "@/components/comments/comment/Comment.component";
+import Image from "next/image";
 
 interface ReadBlogProps {
   blog: BlogType;
@@ -21,11 +22,7 @@ interface ReadBlogProps {
 
 const ReadBlog = ({ blog }: ReadBlogProps) => {
   const [showComments, setShowComments] = useState(false);
-  const {
-    data: commentData,
-    isLoading: commentsLoading,
-    isError: commentsError,
-  } = useApiHook({
+  const { data: commentData } = useApiHook({
     method: "GET",
     url: `/blog/${blog._id}/comment`,
     filter: "isFlagged;false",
@@ -40,7 +37,7 @@ const ReadBlog = ({ blog }: ReadBlogProps) => {
       updateBlogViewCount(blog._id);
       localStorage.setItem(viewedKey, "true");
     }
-  }, [blog]);
+  }, [blog, updateBlogViewCount]);
 
   return (
     <div className={styles.container}>
@@ -49,7 +46,7 @@ const ReadBlog = ({ blog }: ReadBlogProps) => {
 
         {blog.blogImageUrl && !blog.isVlog && (
           <div className={styles.coverImageContainer}>
-            <img src={blog.blogImageUrl} alt={blog.blogTitle} />
+            <Image src={blog.blogImageUrl} alt={blog.blogTitle} width={1000} height={1000} />
           </div>
         )}
 

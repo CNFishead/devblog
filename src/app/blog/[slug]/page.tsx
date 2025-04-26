@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import axios from "@/utils/axios";
-import decryptData from "@/utils/decryptData";
 import ReadBlog from "@/views/blog/ReadBlog.view";
 import BlogType from "@/types/BlogType";
 import ProtectedContent from "@/layout/protectedContent/ProtectedContent.layout";
@@ -18,14 +17,14 @@ async function fetchBlog(slug: string): Promise<Blog | null> {
   try {
     const { data } = await axios.get(`/blog/${slug}/public`);
     return { ...data.payload };
-  } catch (err) {
+  } catch (err: any) {
+    console.log(err);
     return null;
   }
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const param = await params;
-  const { slug } = param;
+  const { slug } = await params;
   const blog = await fetchBlog(slug);
   if (!blog) return { title: "Blog not found" };
 
@@ -48,10 +47,8 @@ type PageProps = {
 };
 
 export default async function BlogPage({ params, searchParams }: PageProps) {
-  const param = await params;
-  const searchParam = await searchParams;
-  const { slug } = param;
-  const { admin } = searchParam;
+  const { slug } = await params;
+  const { admin } = await searchParams;
   const isAdmin = admin === "true";
   const blog = (await fetchBlog(slug)) as BlogType;
 

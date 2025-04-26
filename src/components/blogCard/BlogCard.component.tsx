@@ -54,6 +54,8 @@ const BlogCard = ({ blog, large, showDescription = true }: BlogCardProps) => {
               src={blog?.blogImageUrl}
               className={styles.image}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              width={200}
+              height={200}
             />
           </div>
           <div className={styles.articleContent}>
