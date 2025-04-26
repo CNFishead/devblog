@@ -31,6 +31,7 @@ jobs:
         env:
           API_URL: ${{ secrets.API_URL }}
           ENCRYPTION_KEY: ${{ secrets.ENCRYPTION_KEY }}
+          NODE_ENV: ${{ secrets.NODE_ENV }}
 
       - name: Zip artifact for deployment
         run: zip next.zip ./* .next -qr
