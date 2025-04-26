@@ -1,0 +1,116 @@
+@use "@/styles/globals.scss" as *;
+
+.blogPaginationContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-bottom: 4rem;
+  .searchForm {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .searchInput {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--quaternary-dark);
+    background-color: var(--dark);
+    color: var(--quaternary);
+    min-width: 250px;
+
+    &:focus {
+      outline: none;
+      border-color: var(--tertiary);
+    }
+  }
+
+  .searchButton {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+
+    &:hover {
+      background-color: var(--secondary);
+    }
+  }
+
+  .blogContainer {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 30px;
+
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include mobile {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+  .loadMoreButton {
+    align-self: center;
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+
+    &:hover {
+      background-color: var(--secondary);
+    }
+
+    &:disabled {
+      background-color: var(--quaternary-dark);
+      cursor: not-allowed;
+    }
+  }
+}
+.paginationContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+.pageButton {
+  background-color: var(--primary);
+  color: var(--quaternary);
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: var(--secondary);
+  }
+
+  &:disabled {
+    background-color: var(--quaternary-dark);
+    cursor: not-allowed;
+  }
+}
+
+.activePage {
+  background-color: var(--tertiary);
+  color: var(--dark);
+  font-weight: bold;
+}
+
+.ellipsis {
+  padding: 0 0.5rem;
+  user-select: none;
+}

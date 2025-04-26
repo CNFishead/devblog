@@ -55,7 +55,7 @@ const fetchData = async (url: string, method: "GET" | "POST" | "PUT" | "DELETE",
 const useApiHook = (options: {
   method: "GET" | "POST" | "PUT" | "DELETE";
   url?: string;
-  key: string | string[];
+  key: string | Array<string | number>;
   filter?: any;
   keyword?: string;
   sort?: any;
@@ -68,6 +68,7 @@ const useApiHook = (options: {
   refetchOnWindowFocus?: boolean;
   staleTime?: number;
   cacheTime?: number;
+  pageNumber?: number;
   onSuccessCallback?: (data: any) => void;
   onErrorCallback?: (error: any) => void;
 }) => {
@@ -87,6 +88,7 @@ const useApiHook = (options: {
     successMessage,
     redirectUrl,
     keyword,
+    pageNumber,
     enabled = true,
     refetchOnWindowFocus = false,
     staleTime = 1000 * 60 * 5, // 5 minutes
@@ -96,7 +98,6 @@ const useApiHook = (options: {
   } = options;
 
   const queryKey = typeof key === "string" ? [key] : key;
-
   const query = useQuery({
     queryKey,
     queryFn: () =>
@@ -106,6 +107,7 @@ const useApiHook = (options: {
         defaultSort: sort,
         defaultInclude: include,
         defaultPageLimit: limit,
+        defaultPageNumber: pageNumber,
       }),
     enabled: enabled && method === "GET",
     refetchOnWindowFocus,

@@ -7,14 +7,14 @@ import ConnectedDots from "@/components/dots/ConnectedDots.component";
 
 interface Props {
   blogs: BlogType[];
-  recentBlogs: BlogType[];
+  recentBlogs?: BlogType[];
 }
 
-const Home = ({ blogs, recentBlogs }: Props) => {
+const Home = ({ blogs }: Props) => {
   return (
     <div className={styles.container}>
       <HeroSection />
-      <BlogSection blogs={blogs} recentBlogs={recentBlogs} />
+      <BlogSection blogs={blogs} />
     </div>
   );
 };

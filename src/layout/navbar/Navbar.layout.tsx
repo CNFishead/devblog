@@ -11,8 +11,7 @@ import Image from "next/image";
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "Blog", href: "/blog" },
-  { label: "Projects", href: "/projects" },
-  { label: "Contact", href: "/contact" },
+  { label: "Projects", href: "https://austinhoward.dev/projects" },
 ];
 
 export default function Navbar() {
@@ -26,7 +25,7 @@ export default function Navbar() {
     const trimmed = searchValue.trim();
     if (!trimmed) return;
     const encoded = encodeURIComponent(trimmed);
-    window.location.href = `/search?search=${encoded}`;
+    window.location.href = `/blog?search=${encoded}`;
   };
 
   // set search bar to close on route change

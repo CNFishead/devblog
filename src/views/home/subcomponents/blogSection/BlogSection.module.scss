@@ -6,7 +6,7 @@
   width: 100%;
   position: relative;
   max-width: 1280px; 
-  margin: 0 auto;
+  margin: 0 auto 5%;
 
   @include tablet {
     flex-direction: column;
@@ -21,55 +21,17 @@
     @include tablet {
       // width: 65%;
     }
-    .featuredContainer {
-      @extend .cardContainer;
-      display: grid !important;
-      grid-template-columns: repeat(1, 1fr);
-      gap: 20px;
-      .featuredBlog {
-        width: 100%;
-        max-width: 480px;
-        margin: 0 auto;
+ 
+    .titleContainer{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      button{
+        width: auto;
+        flex-wrap: nowrap;
+        min-width: 300px;
       }
-      @include mobile {
-        display: flex !important;
-        flex-direction: column;
-      }
-    }
-    .mostRecentContainer {
-      @extend .cardContainer;
-
-      .titleContainer {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        button{
-          
-        }
-      }
-    }
-  }
-  .rightContainer {
-    position: sticky;
-    display: flex;
-    flex: 1;
-    flex-direction: column; 
-    top: 2rem;
-    align-items: flex-start;
-    -webkit-overflow-scrolling: touch; // Smooth scrolling on iOS
-
-    // @include mobile {
-    //   width: 100%;
-    //   position: relative;
-    //   height: auto;
-    // }
-
-    @include tablet {
-      position: relative;
-      height: auto;
-      width: auto;
-      gap: 10px;
     }
   }
 }
@@ -86,4 +48,13 @@
 .emphasis {
   font-weight: 600;
   color: var(--secondary);
+}
+.featuredContainer {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px; 
+  @include mobile {
+    display: flex !important;
+    flex-direction: column;
+  }
 }

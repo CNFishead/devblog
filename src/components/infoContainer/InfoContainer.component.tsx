@@ -8,12 +8,15 @@ import Error from "../error/Error.component";
 import useApiHook from "@/state/useApi";
 import { motion, AnimatePresence } from "framer-motion";
 import socialLinks from "@/data/socialLinks";
+import { useMediaQuery } from "react-responsive";
 
 interface InfoContainerProps {
   blogs?: BlogType[];
+  showBlogs?: boolean;
 }
 
-const InfoContainer = ({ blogs }: InfoContainerProps) => {
+const InfoContainer = ({ blogs, showBlogs = false }: InfoContainerProps) => {
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const [showSubscribe, setShowSubscribe] = useState(false);
   const [email, setEmail] = useState("");
   const {
@@ -126,21 +129,23 @@ const InfoContainer = ({ blogs }: InfoContainerProps) => {
         </div>
       </div>
 
-      <div className={styles.blogsContainer}>
-        {loading ? (
-          <p>Loading...</p>
-        ) : isError ? (
-          <Error error={error} />
-        ) : blogs?.length === 0 ? (
-          <p>No blogs found.</p>
-        ) : (
-          (blogs ?? blogsData?.blogs)?.map((blog: BlogType) => (
-            <motion.div key={blog._id} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-              <BlogCard blog={blog} large={false} showDescription={true} />
-            </motion.div>
-          ))
-        )}
-      </div>
+      {showBlogs && (
+        <div className={styles.blogsContainer}>
+          {loading ? (
+            <p>Loading...</p>
+          ) : isError ? (
+            <Error error={error} />
+          ) : blogs?.length === 0 ? (
+            <p>No blogs found.</p>
+          ) : (
+            (blogs ?? blogsData?.blogs)?.map((blog: BlogType) => (
+              <motion.div key={blog._id} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                <BlogCard blog={blog} large={false} showDescription={isMobile ? true : false} />
+              </motion.div>
+            ))
+          )}
+        </div>
+      )}
     </div>
   );
 };

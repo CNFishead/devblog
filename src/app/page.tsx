@@ -29,8 +29,6 @@ export const metadata = {
 
 export default async function Page() {
   let blogs = [];
-  let recentBlogs = [];
-
   try {
     const { data } = await axios.get(`${process.env.API_URL}/blog`, {
       params: {
@@ -42,25 +40,9 @@ export default async function Page() {
   } catch (err) {
     console.error("Error fetching featured blogs:", err);
   }
-
-  try {
-    const { data } = await axios.get(
-      `${process.env.API_URL}/blog`,
-      {
-        params: {
-          filterOptions: "isPublished;true,isPrivate;false",
-          limit: "10"
-        }
-      }
-    );
-    recentBlogs = data.blogs;
-  } catch (err) {
-    console.error("Error fetching recent blogs:", err);
-  }
-
   return (
     <div className={styles.page}>
-      <Home blogs={blogs} recentBlogs={recentBlogs} />
+      <Home blogs={blogs} />
     </div>
   );
 }

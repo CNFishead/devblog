@@ -3,25 +3,11 @@ import React from "react";
 import { motion } from "framer-motion";
 import styles from "./HeroSection.module.scss";
 import Image from "next/image";
+import InfoContainer from "@/components/infoContainer/InfoContainer.component";
 
 const HeroSection = () => {
   return (
     <section className={styles.hero}>
-      {/* <div className={styles.waveContainer}>
-        <svg id="wave" viewBox="0 0 1440 300" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="hero-wave" x1="0" x2="0" y1="1" y2="0">
-              <stop stopColor="rgba(35, 38, 42, 1)" offset="0%" />
-              <stop stopColor="rgba(56, 78, 107, 1)" offset="100%" />
-            </linearGradient>
-          </defs>
-          <path
-            fill="url(#hero-wave)"
-            d="M0,147L120,163.3C240,180,480,212,720,196C960,180,1200,114,1440,106.2L1440,300L0,300Z"
-          />
-        </svg>
-      </div> */}
-
       <div className={styles.heroContainer}>
         <div className={styles.heroContent}>
           <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>

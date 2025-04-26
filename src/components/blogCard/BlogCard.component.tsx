@@ -12,7 +12,7 @@ interface BlogCardProps {
   showDescription?: boolean;
 }
 
-const BlogCard = ({ blog, large, showDescription }: BlogCardProps) => {
+const BlogCard = ({ blog, large, showDescription = true }: BlogCardProps) => {
   const [expanded, setExpanded] = useState(false);
 
   const truncate = (text: string, limit = 150) => (text.length > limit ? `${text.substring(0, limit)}...` : text);
@@ -24,10 +24,10 @@ const BlogCard = ({ blog, large, showDescription }: BlogCardProps) => {
       {large ? (
         <div className={styles.featuredCard}>
           <div className={styles.imageContainer}>
-            <Image alt={blog.blogTitle} src={blog?.blogImageUrl} layout="fill" />
+            <Image alt={blog.blogTitle} src={blog?.blogImageUrl} className={styles.image} width={400} height={400}/>
           </div>
           <div className={styles.cardBody}>
-            <h2 className={styles.cardTitle}>{blog?.blogTitle}</h2>
+            <h2 className={`${styles.cardTitle} ellipsis`}>{blog?.blogTitle}</h2>
             <div className={styles.meta}>
               <span>
                 {dayjs(blog?.publishedAt).format("MMM DD, YYYY")} by {blog?.author}
@@ -52,7 +52,6 @@ const BlogCard = ({ blog, large, showDescription }: BlogCardProps) => {
             <Image
               alt={blog?.blogTitle}
               src={blog?.blogImageUrl}
-              layout="fill"
               className={styles.image}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
