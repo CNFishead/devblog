@@ -1,7 +1,7 @@
 // app/page.tsx
 import Home from "@/views/home/Home.view";
-import axios from "axios";
 import styles from "./page.module.css";
+import axios from "@/utils/axios";
 
 // Metadata for SEO
 export const metadata = {
@@ -30,7 +30,7 @@ export const metadata = {
 export default async function Page() {
   let blogs = [];
   try {
-    const { data } = await axios.get(`${process.env.API_URL}/blog`, {
+    const { data } = await axios.get(`/blog`, {
       params: {
         filterOptions: "isPublished;true,isFeatured;true,isPrivate;false",
         limit: "3",
