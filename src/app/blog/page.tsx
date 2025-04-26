@@ -26,10 +26,7 @@ export const metadata = {
     type: "website",
   },
 };
-type PageProps = {
-  searchParams: { search: string };
-};
-export default async function Page({ searchParams }: PageProps) {
+export default async function Page({ searchParams }: { searchParams: Promise<{ search?: string }> }) {
   const searchParam = await searchParams;
   const { search } = searchParam;
   const queryClient = new QueryClient();
@@ -45,7 +42,7 @@ export default async function Page({ searchParams }: PageProps) {
     </HydrationBoundary>
   );
 }
-export async function getInitialBlogs(page: number = 1, search: string = ""): Promise<BlogType[]> {
+async function getInitialBlogs(page: number = 1, search: string = ""): Promise<BlogType[]> {
   const res = await fetch(
     `${process.env.API_URL}/blog?pageNumber=${page}&limit=10&filterOptions=isPublished;true,isPrivate;false&keyword=${search}`,
     {

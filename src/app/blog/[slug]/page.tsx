@@ -5,15 +5,7 @@ import ReadBlog from "@/views/blog/ReadBlog.view";
 import BlogType from "@/types/BlogType";
 import ProtectedContent from "@/layout/protectedContent/ProtectedContent.layout";
 
-interface Blog {
-  blogTitle: string;
-  description: string;
-  blogImageUrl: string;
-  tags: string[];
-  slug: string;
-}
-
-async function fetchBlog(slug: string): Promise<Blog | null> {
+async function fetchBlog(slug: string): Promise<BlogType | null> {
   try {
     const { data } = await axios.get(`/blog/${slug}/public`);
     return { ...data.payload };
@@ -23,9 +15,10 @@ async function fetchBlog(slug: string): Promise<Blog | null> {
   }
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const blog = await fetchBlog(slug);
+
   if (!blog) return { title: "Blog not found" };
 
   return {
@@ -41,12 +34,13 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-type PageProps = {
-  params: { slug: string };
-  searchParams: { admin: string };
-};
-
-export default async function BlogPage({ params, searchParams }: PageProps) {
+export default async function BlogPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ admin?: string }>;
+}) {
   const { slug } = await params;
   const { admin } = await searchParams;
   const isAdmin = admin === "true";
