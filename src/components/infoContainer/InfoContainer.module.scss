@@ -3,7 +3,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  position: static; 
+  position: relative; 
   overflow-y: scroll;
 }
 .socialCard {

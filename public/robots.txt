@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /blog/%5Bslug%5D
+Disallow: /api/
+Allow: /
+
+Sitemap: https://blog.austinhoward.dev/sitemap.xml

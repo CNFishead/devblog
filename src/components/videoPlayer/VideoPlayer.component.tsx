@@ -55,8 +55,8 @@ const VideoPlayer = (props: Props) => {
         // (player as any).autoplay(options.autoplay);
         (player as any).src(options.sources);
       }
-    }
-  }, [props.video, options]);
+    } 
+  }, [props.video]);
 
   return (
     <div

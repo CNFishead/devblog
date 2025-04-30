@@ -46,7 +46,7 @@ const ReadBlog = ({ blog }: ReadBlogProps) => {
 
         {blog.blogImageUrl && !blog.isVlog && (
           <div className={styles.coverImageContainer}>
-            <Image src={blog.blogImageUrl} alt={blog.blogTitle} width={1000} height={1000} />
+            <Image src={blog.blogImageUrl} alt={blog.blogTitle} width={780} height={780} />
           </div>
         )}
 
@@ -93,33 +93,35 @@ const ReadBlog = ({ blog }: ReadBlogProps) => {
       </div>
 
       <div className={styles.rightContainer}>
-        {showComments ? (
-          <div className={styles.commentContainer}>
-            <div className={styles.titleContainer}>
-              <h2 className="section-title">Comments</h2>
-              <FaTimes className={styles.closeButton} onClick={() => setShowComments(false)} />
+        <div className={styles.slideContainer}>
+          {showComments ? (
+            <div className={styles.commentContainer}>
+              <div className={styles.titleContainer}>
+                <h2 className="section-title">Comments</h2>
+                <FaTimes className={styles.closeButton} onClick={() => setShowComments(false)} />
+              </div>
+              <CommentForm blog={blog} />
+              {commentData?.comments?.map((c: any) => (
+                <Comment key={c._id} comment={c} />
+              ))}
             </div>
-            <CommentForm blog={blog} />
-            {commentData?.comments?.map((c: any) => (
-              <Comment key={c._id} comment={c} />
-            ))}
+          ) : (
+            <InfoContainer />
+          )}
+        </div>
+
+        {!showComments && (
+          <div
+            id="commentsContainer"
+            className={styles.showCommentsButtonContainer}
+            onClick={() => setShowComments(true)}
+          >
+            <button className={styles.showCommentsButton}>
+              <FaCommentAlt />
+            </button>
           </div>
-        ) : (
-          <InfoContainer />
         )}
       </div>
-
-      {!showComments && (
-        <div
-          id="commentsContainer"
-          className={styles.showCommentsButtonContainer}
-          onClick={() => setShowComments(true)}
-        >
-          <button className={styles.showCommentsButton}>
-            <FaCommentAlt />
-          </button>
-        </div>
-      )}
     </div>
   );
 };

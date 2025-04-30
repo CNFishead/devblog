@@ -19,7 +19,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const blog = await fetchBlog(slug);
 
-  if (!blog) return { title: "Blog not found" };
+  if (!blog) {
+    return {
+      title: "Blog not found",
+      robots: {
+        index: false,
+        follow: false,
+      },
+    };
+  }
 
   return {
     title: `${blog.blogTitle} | Austin Howard`,
@@ -32,8 +40,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     },
     keywords: blog.tags?.join(","),
   };
-}
-
+} 
 export default async function BlogPage({
   params,
   searchParams,
